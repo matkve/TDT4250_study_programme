@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="study_program" nsURI="http:///study_program.ecore" nsPrefix="study_program">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="validationDelegates" value="http://www.eclipse.org/acceleo/query/1.0"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Programme">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstYear" upperBound="-1"
+        eType="#//Year" containment="true" eOpposite="#//Year/programme"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Course">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="#//CourseCode"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="credits" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"
+        defaultValueLiteral="7.5"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="season" eType="#//SeasonKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Semester">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="courseSeasonsMatch totalCreditsMustBe30"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
+      <details key="courseSeasonsMatch" value="self.mandatory->union(self.electiveGroups.electives)->forAll(course | course.season = self.season)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mandatory" upperBound="-1"
+        eType="#//Course"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="electiveGroups" upperBound="-1"
+        eType="#//ElectiveGroup" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="year" lowerBound="1" eType="#//Year"
+        eOpposite="#//Year/semesters"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="season" eType="#//SeasonKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SeasonKind">
+    <eLiterals name="Spring"/>
+    <eLiterals name="Fall"/>
+    <eLiterals name="Both"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Year">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="requireFallAndSpringSemesters multipleNextYearsAreSpecialisations"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="semesters" lowerBound="2"
+        upperBound="2" eType="#//Semester" containment="true" eOpposite="#//Semester/year"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nextYear" upperBound="-1"
+        eType="#//Year" containment="true" eOpposite="#//Year/previousYear"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previousYear" eType="#//Year"
+        eOpposite="#//Year/nextYear"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specialisation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yearNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        changeable="false" volatile="true" transient="true" defaultValueLiteral="0"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="programme" eType="#//Programme"
+        eOpposite="#//Programme/firstYear"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="University">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="nameMustBeFilled"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
+      <details key="nameMustBeFilled" value="not self.name.equals('')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="programmes" upperBound="-1"
+        eType="#//Programme" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="courses" upperBound="-1"
+        eType="#//Course" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElectiveGroup">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="electivesInGroupNeedsToHaveSpecifiedCreditScore"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creditsPerElectiveInGroup"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="7.5"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minToChoose" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="electives" lowerBound="1"
+        upperBound="-1" eType="#//Course"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CourseCode" instanceClassName="java.lang.String"/>
+</ecore:EPackage>

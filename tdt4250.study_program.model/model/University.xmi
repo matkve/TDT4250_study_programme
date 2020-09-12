@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<study_program:University
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:study_program="http:///study_program.ecore"
+    xsi:schemaLocation="http:///study_program.ecore study_program.ecore"
+    name="NTNU">
+  <programmes
+      name="Informatikk">
+    <firstYear>
+      <semesters
+          mandatory="//@courses.0 //@courses.4"
+          season="Fall">
+        <electiveGroups
+            electives="//@courses.6"/>
+      </semesters>
+      <semesters/>
+      <nextYear
+          specialisation="webutvikling">
+        <semesters
+            mandatory="//@courses.0"
+            season="Fall"/>
+        <semesters/>
+      </nextYear>
+      <nextYear
+          specialisation="kunstig intelligens">
+        <semesters
+            mandatory="//@courses.0 //@courses.2"
+            season="Fall">
+          <electiveGroups
+              electives="//@courses.6 //@courses.2"/>
+        </semesters>
+        <semesters
+            mandatory="//@courses.1"/>
+        <nextYear>
+          <semesters
+              season="Fall"/>
+          <semesters/>
+        </nextYear>
+      </nextYear>
+    </firstYear>
+  </programmes>
+  <courses code="tdt4110"
+      name="itgk"
+      season="Fall"/>
+  <courses code="tdt4100"
+      name="oop"/>
+  <courses code="tdt4120"
+      name="algdat"
+      season="Fall"/>
+  <courses code="tdt4140"
+      name="programvareutvikling"/>
+  <courses code="tdt4136"
+      name="intro kunstig int"
+      season="Fall"/>
+  <courses code="tdt4186"
+      name="os"/>
+  <courses code="it3402"
+      name="brukergrensesnitt"
+      season="Fall"/>
+  <courses code="tdt4242"
+      name="avansert programvareutvikling"/>
+</study_program:University>

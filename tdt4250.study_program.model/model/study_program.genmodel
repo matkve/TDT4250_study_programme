@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/tdt4250.study_program.model/src" modelPluginID="tdt4250.study_program.model"
+    modelName="Study_program" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="9.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>study_program.ecore</foreignModel>
+  <genPackages prefix="Study_program" basePackage="tdt4250" disposableProviderFactory="true"
+      ecorePackage="study_program.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="study_program.ecore#//SeasonKind">
+      <genEnumLiterals ecoreEnumLiteral="study_program.ecore#//SeasonKind/Spring"/>
+      <genEnumLiterals ecoreEnumLiteral="study_program.ecore#//SeasonKind/Fall"/>
+      <genEnumLiterals ecoreEnumLiteral="study_program.ecore#//SeasonKind/Both"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="study_program.ecore#//CourseCode"/>
+    <genClasses ecoreClass="study_program.ecore#//Programme">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute study_program.ecore#//Programme/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference study_program.ecore#//Programme/firstYear"/>
+    </genClasses>
+    <genClasses ecoreClass="study_program.ecore#//Course">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute study_program.ecore#//Course/code"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute study_program.ecore#//Course/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute study_program.ecore#//Course/credits"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute study_program.ecore#//Course/season"/>
+    </genClasses>
+    <genClasses ecoreClass="study_program.ecore#//Semester">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference study_program.ecore#//Semester/mandatory"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference study_program.ecore#//Semester/electiveGroups"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference study_program.ecore#//Semester/year"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute study_program.ecore#//Semester/season"/>
+    </genClasses>
+    <genClasses ecoreClass="study_program.ecore#//Year">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference study_program.ecore#//Year/semesters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference study_program.ecore#//Year/nextYear"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference study_program.ecore#//Year/previousYear"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute study_program.ecore#//Year/specialisation"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute study_program.ecore#//Year/yearNumber"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference study_program.ecore#//Year/programme"/>
+    </genClasses>
+    <genClasses ecoreClass="study_program.ecore#//University">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference study_program.ecore#//University/programmes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference study_program.ecore#//University/courses"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute study_program.ecore#//University/name"/>
+    </genClasses>
+    <genClasses ecoreClass="study_program.ecore#//ElectiveGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute study_program.ecore#//ElectiveGroup/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute study_program.ecore#//ElectiveGroup/creditsPerElectiveInGroup"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute study_program.ecore#//ElectiveGroup/minToChoose"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference study_program.ecore#//ElectiveGroup/electives"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
