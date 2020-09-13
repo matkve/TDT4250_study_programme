@@ -13,7 +13,8 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import tdt4250.study_program.Course;
-import tdt4250.study_program.ElectiveGroup;
+import tdt4250.study_program.CourseGroup;
+import tdt4250.study_program.LevelKind;
 import tdt4250.study_program.Programme;
 import tdt4250.study_program.SeasonKind;
 import tdt4250.study_program.Semester;
@@ -70,7 +71,7 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass electiveGroupEClass = null;
+	private EClass courseGroupEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,6 +79,13 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 	 * @generated
 	 */
 	private EEnum seasonKindEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum levelKindEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -243,6 +251,16 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 	 * @generated
 	 */
 	@Override
+	public EAttribute getCourse_Level() {
+		return (EAttribute)courseEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getSemester() {
 		return semesterEClass;
 	}
@@ -253,7 +271,7 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 	 * @generated
 	 */
 	@Override
-	public EReference getSemester_Mandatory() {
+	public EReference getSemester_CourseGroups() {
 		return (EReference)semesterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -263,7 +281,7 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 	 * @generated
 	 */
 	@Override
-	public EReference getSemester_ElectiveGroups() {
+	public EReference getSemester_Year() {
 		return (EReference)semesterEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -273,18 +291,8 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 	 * @generated
 	 */
 	@Override
-	public EReference getSemester_Year() {
-		return (EReference)semesterEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getSemester_Season() {
-		return (EAttribute)semesterEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)semesterEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -363,6 +371,16 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 	 * @generated
 	 */
 	@Override
+	public EAttribute getYear_Level() {
+		return (EAttribute)yearEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getUniversity() {
 		return universityEClass;
 	}
@@ -403,8 +421,8 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 	 * @generated
 	 */
 	@Override
-	public EClass getElectiveGroup() {
-		return electiveGroupEClass;
+	public EClass getCourseGroup() {
+		return courseGroupEClass;
 	}
 
 	/**
@@ -413,8 +431,8 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 	 * @generated
 	 */
 	@Override
-	public EAttribute getElectiveGroup_Description() {
-		return (EAttribute)electiveGroupEClass.getEStructuralFeatures().get(0);
+	public EAttribute getCourseGroup_Description() {
+		return (EAttribute)courseGroupEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -423,8 +441,8 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 	 * @generated
 	 */
 	@Override
-	public EAttribute getElectiveGroup_CreditsPerElectiveInGroup() {
-		return (EAttribute)electiveGroupEClass.getEStructuralFeatures().get(1);
+	public EReference getCourseGroup_Electives() {
+		return (EReference)courseGroupEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -433,8 +451,8 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 	 * @generated
 	 */
 	@Override
-	public EAttribute getElectiveGroup_MinToChoose() {
-		return (EAttribute)electiveGroupEClass.getEStructuralFeatures().get(2);
+	public EReference getCourseGroup_Mandatory() {
+		return (EReference)courseGroupEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -443,8 +461,8 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 	 * @generated
 	 */
 	@Override
-	public EReference getElectiveGroup_Electives() {
-		return (EReference)electiveGroupEClass.getEStructuralFeatures().get(3);
+	public EReference getCourseGroup_Semester() {
+		return (EReference)courseGroupEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -455,6 +473,16 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 	@Override
 	public EEnum getSeasonKind() {
 		return seasonKindEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getLevelKind() {
+		return levelKindEEnum;
 	}
 
 	/**
@@ -505,10 +533,10 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 		createEAttribute(courseEClass, COURSE__NAME);
 		createEAttribute(courseEClass, COURSE__CREDITS);
 		createEAttribute(courseEClass, COURSE__SEASON);
+		createEAttribute(courseEClass, COURSE__LEVEL);
 
 		semesterEClass = createEClass(SEMESTER);
-		createEReference(semesterEClass, SEMESTER__MANDATORY);
-		createEReference(semesterEClass, SEMESTER__ELECTIVE_GROUPS);
+		createEReference(semesterEClass, SEMESTER__COURSE_GROUPS);
 		createEReference(semesterEClass, SEMESTER__YEAR);
 		createEAttribute(semesterEClass, SEMESTER__SEASON);
 
@@ -519,20 +547,22 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 		createEAttribute(yearEClass, YEAR__SPECIALISATION);
 		createEAttribute(yearEClass, YEAR__YEAR_NUMBER);
 		createEReference(yearEClass, YEAR__PROGRAMME);
+		createEAttribute(yearEClass, YEAR__LEVEL);
 
 		universityEClass = createEClass(UNIVERSITY);
 		createEReference(universityEClass, UNIVERSITY__PROGRAMMES);
 		createEReference(universityEClass, UNIVERSITY__COURSES);
 		createEAttribute(universityEClass, UNIVERSITY__NAME);
 
-		electiveGroupEClass = createEClass(ELECTIVE_GROUP);
-		createEAttribute(electiveGroupEClass, ELECTIVE_GROUP__DESCRIPTION);
-		createEAttribute(electiveGroupEClass, ELECTIVE_GROUP__CREDITS_PER_ELECTIVE_IN_GROUP);
-		createEAttribute(electiveGroupEClass, ELECTIVE_GROUP__MIN_TO_CHOOSE);
-		createEReference(electiveGroupEClass, ELECTIVE_GROUP__ELECTIVES);
+		courseGroupEClass = createEClass(COURSE_GROUP);
+		createEAttribute(courseGroupEClass, COURSE_GROUP__DESCRIPTION);
+		createEReference(courseGroupEClass, COURSE_GROUP__ELECTIVES);
+		createEReference(courseGroupEClass, COURSE_GROUP__MANDATORY);
+		createEReference(courseGroupEClass, COURSE_GROUP__SEMESTER);
 
 		// Create enums
 		seasonKindEEnum = createEEnum(SEASON_KIND);
+		levelKindEEnum = createEEnum(LEVEL_KIND);
 
 		// Create data types
 		courseCodeEDataType = createEDataType(COURSE_CODE);
@@ -575,12 +605,12 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 		initEClass(courseEClass, Course.class, "Course", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCourse_Code(), this.getCourseCode(), "code", null, 0, 1, Course.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCourse_Name(), ecorePackage.getEString(), "name", null, 0, 1, Course.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCourse_Credits(), ecorePackage.getEFloat(), "credits", "7.5", 0, 1, Course.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCourse_Credits(), ecorePackage.getEDouble(), "credits", "7.5d", 0, 1, Course.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCourse_Season(), this.getSeasonKind(), "season", null, 0, 1, Course.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCourse_Level(), this.getLevelKind(), "level", null, 0, 1, Course.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(semesterEClass, Semester.class, "Semester", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSemester_Mandatory(), this.getCourse(), null, "mandatory", null, 0, -1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSemester_ElectiveGroups(), this.getElectiveGroup(), null, "electiveGroups", null, 0, -1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSemester_CourseGroups(), this.getCourseGroup(), this.getCourseGroup_Semester(), "courseGroups", null, 1, -1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSemester_Year(), this.getYear(), this.getYear_Semesters(), "year", null, 1, 1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSemester_Season(), this.getSeasonKind(), "season", null, 0, 1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -591,23 +621,28 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 		initEAttribute(getYear_Specialisation(), ecorePackage.getEString(), "specialisation", "", 0, 1, Year.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getYear_YearNumber(), ecorePackage.getEInt(), "yearNumber", "0", 0, 1, Year.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getYear_Programme(), this.getProgramme(), this.getProgramme_FirstYear(), "programme", null, 0, 1, Year.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getYear_Level(), this.getLevelKind(), "level", null, 0, 1, Year.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(universityEClass, University.class, "University", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUniversity_Programmes(), this.getProgramme(), null, "programmes", null, 0, -1, University.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUniversity_Courses(), this.getCourse(), null, "courses", null, 0, -1, University.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUniversity_Name(), ecorePackage.getEString(), "name", null, 0, 1, University.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(electiveGroupEClass, ElectiveGroup.class, "ElectiveGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getElectiveGroup_Description(), ecorePackage.getEString(), "description", null, 0, 1, ElectiveGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getElectiveGroup_CreditsPerElectiveInGroup(), ecorePackage.getEFloat(), "creditsPerElectiveInGroup", "7.5", 0, 1, ElectiveGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getElectiveGroup_MinToChoose(), ecorePackage.getEInt(), "minToChoose", null, 0, 1, ElectiveGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getElectiveGroup_Electives(), this.getCourse(), null, "electives", null, 1, -1, ElectiveGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(courseGroupEClass, CourseGroup.class, "CourseGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCourseGroup_Description(), ecorePackage.getEString(), "description", null, 0, 1, CourseGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCourseGroup_Electives(), this.getCourse(), null, "electives", null, 0, -1, CourseGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCourseGroup_Mandatory(), this.getCourse(), null, "mandatory", null, 0, -1, CourseGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCourseGroup_Semester(), this.getSemester(), this.getSemester_CourseGroups(), "semester", null, 1, 1, CourseGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(seasonKindEEnum, SeasonKind.class, "SeasonKind");
 		addEEnumLiteral(seasonKindEEnum, SeasonKind.SPRING);
 		addEEnumLiteral(seasonKindEEnum, SeasonKind.FALL);
 		addEEnumLiteral(seasonKindEEnum, SeasonKind.BOTH);
+
+		initEEnum(levelKindEEnum, LevelKind.class, "LevelKind");
+		addEEnumLiteral(levelKindEEnum, LevelKind.BACHELOR);
+		addEEnumLiteral(levelKindEEnum, LevelKind.MASTER);
 
 		// Initialize data types
 		initEDataType(courseCodeEDataType, String.class, "CourseCode", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
@@ -640,25 +675,19 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 		  (semesterEClass,
 		   source,
 		   new String[] {
-			   "constraints", "courseSeasonsMatch totalCreditsMustBe30"
+			   "constraints", "courseSeasonsMatch totalCreditsAtLeast30 masterYearSemesterNeedsAtLeastOneMasterCourse"
 		   });
 		addAnnotation
 		  (yearEClass,
 		   source,
 		   new String[] {
-			   "constraints", "requireFallAndSpringSemesters multipleNextYearsAreSpecialisations"
+			   "constraints", "requireFallAndSpringSemesters multipleNextYearsAreSpecialisations bachelorBeforeMaster"
 		   });
 		addAnnotation
 		  (universityEClass,
 		   source,
 		   new String[] {
 			   "constraints", "nameMustBeFilled"
-		   });
-		addAnnotation
-		  (electiveGroupEClass,
-		   source,
-		   new String[] {
-			   "constraints", "electivesInGroupNeedsToHaveSpecifiedCreditScore"
 		   });
 	}
 
@@ -674,7 +703,15 @@ public class Study_programPackageImpl extends EPackageImpl implements Study_prog
 		  (semesterEClass,
 		   source,
 		   new String[] {
-			   "courseSeasonsMatch", "self.mandatory->union(self.electiveGroups.electives)->forAll(course | course.season = self.season)"
+			   "courseSeasonsMatch", "self.courseGroups.mandatory->union(self.courseGroups.electives)->forAll(course | course.season = self.season or course.season = self.eClass().ePackage.getEClassifier(\'SeasonKind\').getEEnumLiteral(\'Both\'))",
+			   "totalCreditsAtLeast30", "self.courseGroups.mandatory->union(self.courseGroups.electives).credits->sum() >= 30.0",
+			   "masterYearSemesterNeedsAtLeastOneMasterCourse", "let masterLevel = self.eClass().ePackage.getEClassifier(\'LevelKind\').getEEnumLiteral(\'Master\') let masterCredits = self.courseGroups.mandatory->union(self.courseGroups.electives)->select(course | course.level = masterLevel).credits if self.year.level = masterLevel then if masterCredits->isEmpty() then false else masterCredits->sum() >= 7.5 endif else true endif"
+		   });
+		addAnnotation
+		  (yearEClass,
+		   source,
+		   new String[] {
+			   "bachelorBeforeMaster", "let bachelor = self.eClass().ePackage.getEClassifier(\'LevelKind\').getEEnumLiteral(\'Bachelor\') if self.level = bachelor and not self.previousYear->isEmpty() then self.previousYear.level = bachelor else true endif"
 		   });
 		addAnnotation
 		  (universityEClass,

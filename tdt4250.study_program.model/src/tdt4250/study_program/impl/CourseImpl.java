@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import tdt4250.study_program.Course;
+import tdt4250.study_program.LevelKind;
 import tdt4250.study_program.SeasonKind;
 import tdt4250.study_program.Study_programPackage;
 
@@ -25,6 +26,7 @@ import tdt4250.study_program.Study_programPackage;
  *   <li>{@link tdt4250.study_program.impl.CourseImpl#getName <em>Name</em>}</li>
  *   <li>{@link tdt4250.study_program.impl.CourseImpl#getCredits <em>Credits</em>}</li>
  *   <li>{@link tdt4250.study_program.impl.CourseImpl#getSeason <em>Season</em>}</li>
+ *   <li>{@link tdt4250.study_program.impl.CourseImpl#getLevel <em>Level</em>}</li>
  * </ul>
  *
  * @generated
@@ -78,7 +80,7 @@ public class CourseImpl extends MinimalEObjectImpl.Container implements Course {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final float CREDITS_EDEFAULT = 7.5F;
+	protected static final double CREDITS_EDEFAULT = 7.5;
 
 	/**
 	 * The cached value of the '{@link #getCredits() <em>Credits</em>}' attribute.
@@ -88,7 +90,7 @@ public class CourseImpl extends MinimalEObjectImpl.Container implements Course {
 	 * @generated
 	 * @ordered
 	 */
-	protected float credits = CREDITS_EDEFAULT;
+	protected double credits = CREDITS_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSeason() <em>Season</em>}' attribute.
@@ -109,6 +111,26 @@ public class CourseImpl extends MinimalEObjectImpl.Container implements Course {
 	 * @ordered
 	 */
 	protected SeasonKind season = SEASON_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLevel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final LevelKind LEVEL_EDEFAULT = LevelKind.BACHELOR;
+
+	/**
+	 * The cached value of the '{@link #getLevel() <em>Level</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLevel()
+	 * @generated
+	 * @ordered
+	 */
+	protected LevelKind level = LEVEL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -181,7 +203,7 @@ public class CourseImpl extends MinimalEObjectImpl.Container implements Course {
 	 * @generated
 	 */
 	@Override
-	public float getCredits() {
+	public double getCredits() {
 		return credits;
 	}
 
@@ -191,8 +213,8 @@ public class CourseImpl extends MinimalEObjectImpl.Container implements Course {
 	 * @generated
 	 */
 	@Override
-	public void setCredits(float newCredits) {
-		float oldCredits = credits;
+	public void setCredits(double newCredits) {
+		double oldCredits = credits;
 		credits = newCredits;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Study_programPackage.COURSE__CREDITS, oldCredits, credits));
@@ -227,6 +249,29 @@ public class CourseImpl extends MinimalEObjectImpl.Container implements Course {
 	 * @generated
 	 */
 	@Override
+	public LevelKind getLevel() {
+		return level;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLevel(LevelKind newLevel) {
+		LevelKind oldLevel = level;
+		level = newLevel == null ? LEVEL_EDEFAULT : newLevel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Study_programPackage.COURSE__LEVEL, oldLevel, level));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case Study_programPackage.COURSE__CODE:
@@ -237,6 +282,8 @@ public class CourseImpl extends MinimalEObjectImpl.Container implements Course {
 				return getCredits();
 			case Study_programPackage.COURSE__SEASON:
 				return getSeason();
+			case Study_programPackage.COURSE__LEVEL:
+				return getLevel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -256,10 +303,13 @@ public class CourseImpl extends MinimalEObjectImpl.Container implements Course {
 				setName((String)newValue);
 				return;
 			case Study_programPackage.COURSE__CREDITS:
-				setCredits((Float)newValue);
+				setCredits((Double)newValue);
 				return;
 			case Study_programPackage.COURSE__SEASON:
 				setSeason((SeasonKind)newValue);
+				return;
+			case Study_programPackage.COURSE__LEVEL:
+				setLevel((LevelKind)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -285,6 +335,9 @@ public class CourseImpl extends MinimalEObjectImpl.Container implements Course {
 			case Study_programPackage.COURSE__SEASON:
 				setSeason(SEASON_EDEFAULT);
 				return;
+			case Study_programPackage.COURSE__LEVEL:
+				setLevel(LEVEL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -305,6 +358,8 @@ public class CourseImpl extends MinimalEObjectImpl.Container implements Course {
 				return credits != CREDITS_EDEFAULT;
 			case Study_programPackage.COURSE__SEASON:
 				return season != SEASON_EDEFAULT;
+			case Study_programPackage.COURSE__LEVEL:
+				return level != LEVEL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -327,6 +382,8 @@ public class CourseImpl extends MinimalEObjectImpl.Container implements Course {
 		result.append(credits);
 		result.append(", season: ");
 		result.append(season);
+		result.append(", level: ");
+		result.append(level);
 		result.append(')');
 		return result.toString();
 	}

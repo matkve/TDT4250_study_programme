@@ -97,10 +97,12 @@ public class Study_programValidator extends EObjectValidator {
 				return validateYear((Year)value, diagnostics, context);
 			case Study_programPackage.UNIVERSITY:
 				return validateUniversity((University)value, diagnostics, context);
-			case Study_programPackage.ELECTIVE_GROUP:
-				return validateElectiveGroup((ElectiveGroup)value, diagnostics, context);
+			case Study_programPackage.COURSE_GROUP:
+				return validateCourseGroup((CourseGroup)value, diagnostics, context);
 			case Study_programPackage.SEASON_KIND:
 				return validateSeasonKind((SeasonKind)value, diagnostics, context);
+			case Study_programPackage.LEVEL_KIND:
+				return validateLevelKind((LevelKind)value, diagnostics, context);
 			case Study_programPackage.COURSE_CODE:
 				return validateCourseCode((String)value, diagnostics, context);
 			default:
@@ -142,7 +144,8 @@ public class Study_programValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(semester, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(semester, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSemester_courseSeasonsMatch(semester, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSemester_totalCreditsMustBe30(semester, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSemester_totalCreditsAtLeast30(semester, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSemester_masterYearSemesterNeedsAtLeastOneMasterCourse(semester, diagnostics, context);
 		return result;
 	}
 
@@ -152,7 +155,7 @@ public class Study_programValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SEMESTER__COURSE_SEASONS_MATCH__EEXPRESSION = "self.mandatory->union(self.electiveGroups.electives)->forAll(course | course.season = self.season)";
+	protected static final String SEMESTER__COURSE_SEASONS_MATCH__EEXPRESSION = "self.courseGroups.mandatory->union(self.courseGroups.electives)->forAll(course | course.season = self.season or course.season = self.eClass().ePackage.getEClassifier('SeasonKind').getEEnumLiteral('Both'))";
 
 	/**
 	 * Validates the courseSeasonsMatch constraint of '<em>Semester</em>'.
@@ -176,34 +179,61 @@ public class Study_programValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the totalCreditsMustBe30 constraint of '<em>Semester</em>'.
+	 * The cached validation expression for the totalCreditsAtLeast30 constraint of '<em>Semester</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public boolean validateSemester_totalCreditsMustBe30(Semester semester, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		float sum = 0.0f;
-		for (Course mandatory : semester.getMandatory()) {
-			sum += mandatory.getCredits();
-		}
-		for (ElectiveGroup electiveGroup : semester.getElectiveGroups()) {
-			sum += electiveGroup.getCreditsPerElectiveInGroup() * electiveGroup.getMinToChoose();
-		}
-		if (sum != 30.0f) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "totalCreditsMustBe30", getObjectLabel(semester, context) },
-						 new Object[] { semester },
-						 context));
-			}
-			return false;
-		}
-		return true;
+	protected static final String SEMESTER__TOTAL_CREDITS_AT_LEAST30__EEXPRESSION = "self.courseGroups.mandatory->union(self.courseGroups.electives).credits->sum() >= 30.0";
+
+	/**
+	 * Validates the totalCreditsAtLeast30 constraint of '<em>Semester</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSemester_totalCreditsAtLeast30(Semester semester, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(Study_programPackage.Literals.SEMESTER,
+				 semester,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "totalCreditsAtLeast30",
+				 SEMESTER__TOTAL_CREDITS_AT_LEAST30__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the masterYearSemesterNeedsAtLeastOneMasterCourse constraint of '<em>Semester</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SEMESTER__MASTER_YEAR_SEMESTER_NEEDS_AT_LEAST_ONE_MASTER_COURSE__EEXPRESSION = "let masterLevel = self.eClass().ePackage.getEClassifier('LevelKind').getEEnumLiteral('Master') let masterCredits = self.courseGroups.mandatory->union(self.courseGroups.electives)->select(course | course.level = masterLevel).credits if self.year.level = masterLevel then if masterCredits->isEmpty() then false else masterCredits->sum() >= 7.5 endif else true endif";
+
+	/**
+	 * Validates the masterYearSemesterNeedsAtLeastOneMasterCourse constraint of '<em>Semester</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSemester_masterYearSemesterNeedsAtLeastOneMasterCourse(Semester semester, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(Study_programPackage.Literals.SEMESTER,
+				 semester,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "masterYearSemesterNeedsAtLeastOneMasterCourse",
+				 SEMESTER__MASTER_YEAR_SEMESTER_NEEDS_AT_LEAST_ONE_MASTER_COURSE__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -223,6 +253,7 @@ public class Study_programValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(year, diagnostics, context);
 		if (result || diagnostics != null) result &= validateYear_requireFallAndSpringSemesters(year, diagnostics, context);
 		if (result || diagnostics != null) result &= validateYear_multipleNextYearsAreSpecialisations(year, diagnostics, context);
+		if (result || diagnostics != null) result &= validateYear_bachelorBeforeMaster(year, diagnostics, context);
 		return result;
 	}
 
@@ -300,6 +331,35 @@ public class Study_programValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the bachelorBeforeMaster constraint of '<em>Year</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String YEAR__BACHELOR_BEFORE_MASTER__EEXPRESSION = "let bachelor = self.eClass().ePackage.getEClassifier('LevelKind').getEEnumLiteral('Bachelor') if self.level = bachelor and not self.previousYear->isEmpty() then self.previousYear.level = bachelor else true endif";
+
+	/**
+	 * Validates the bachelorBeforeMaster constraint of '<em>Year</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateYear_bachelorBeforeMaster(Year year, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(Study_programPackage.Literals.YEAR,
+				 year,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "bachelorBeforeMaster",
+				 YEAR__BACHELOR_BEFORE_MASTER__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -352,44 +412,8 @@ public class Study_programValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateElectiveGroup(ElectiveGroup electiveGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(electiveGroup, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(electiveGroup, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(electiveGroup, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(electiveGroup, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(electiveGroup, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(electiveGroup, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(electiveGroup, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(electiveGroup, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(electiveGroup, diagnostics, context);
-		if (result || diagnostics != null) result &= validateElectiveGroup_electivesInGroupNeedsToHaveSpecifiedCreditScore(electiveGroup, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * Validates the electivesInGroupNeedsToHaveSpecifiedCreditScore constraint of '<em>Elective Group</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public boolean validateElectiveGroup_electivesInGroupNeedsToHaveSpecifiedCreditScore(ElectiveGroup electiveGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		for (Course elective : electiveGroup.getElectives()) {
-			if (elective.getCredits() != electiveGroup.getCreditsPerElectiveInGroup()) {
-				if (diagnostics != null) {
-					diagnostics.add
-						(createDiagnostic
-							(Diagnostic.ERROR,
-							 DIAGNOSTIC_SOURCE,
-							 0,
-							 "_UI_GenericConstraint_diagnostic",
-							 new Object[] { "electivesInGroupNeedsToHaveSpecifiedCreditScore", getObjectLabel(electiveGroup, context) },
-							 new Object[] { electiveGroup },
-							 context));
-				}
-				return false;
-			}
-		}
-		return true;
+	public boolean validateCourseGroup(CourseGroup courseGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(courseGroup, diagnostics, context);
 	}
 
 	/**
@@ -398,6 +422,15 @@ public class Study_programValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSeasonKind(SeasonKind seasonKind, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLevelKind(LevelKind levelKind, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

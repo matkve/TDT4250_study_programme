@@ -14,14 +14,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import tdt4250.study_program.Course;
-import tdt4250.study_program.ElectiveGroup;
+import tdt4250.study_program.CourseGroup;
 import tdt4250.study_program.SeasonKind;
 import tdt4250.study_program.Semester;
 import tdt4250.study_program.Study_programPackage;
@@ -35,8 +31,7 @@ import tdt4250.study_program.Year;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link tdt4250.study_program.impl.SemesterImpl#getMandatory <em>Mandatory</em>}</li>
- *   <li>{@link tdt4250.study_program.impl.SemesterImpl#getElectiveGroups <em>Elective Groups</em>}</li>
+ *   <li>{@link tdt4250.study_program.impl.SemesterImpl#getCourseGroups <em>Course Groups</em>}</li>
  *   <li>{@link tdt4250.study_program.impl.SemesterImpl#getYear <em>Year</em>}</li>
  *   <li>{@link tdt4250.study_program.impl.SemesterImpl#getSeason <em>Season</em>}</li>
  * </ul>
@@ -45,24 +40,14 @@ import tdt4250.study_program.Year;
  */
 public class SemesterImpl extends MinimalEObjectImpl.Container implements Semester {
 	/**
-	 * The cached value of the '{@link #getMandatory() <em>Mandatory</em>}' reference list.
+	 * The cached value of the '{@link #getCourseGroups() <em>Course Groups</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMandatory()
+	 * @see #getCourseGroups()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Course> mandatory;
-
-	/**
-	 * The cached value of the '{@link #getElectiveGroups() <em>Elective Groups</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElectiveGroups()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ElectiveGroup> electiveGroups;
+	protected EList<CourseGroup> courseGroups;
 
 	/**
 	 * The default value of the '{@link #getSeason() <em>Season</em>}' attribute.
@@ -109,24 +94,11 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 * @generated
 	 */
 	@Override
-	public EList<Course> getMandatory() {
-		if (mandatory == null) {
-			mandatory = new EObjectResolvingEList<Course>(Course.class, this, Study_programPackage.SEMESTER__MANDATORY);
+	public EList<CourseGroup> getCourseGroups() {
+		if (courseGroups == null) {
+			courseGroups = new EObjectContainmentWithInverseEList<CourseGroup>(CourseGroup.class, this, Study_programPackage.SEMESTER__COURSE_GROUPS, Study_programPackage.COURSE_GROUP__SEMESTER);
 		}
-		return mandatory;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<ElectiveGroup> getElectiveGroups() {
-		if (electiveGroups == null) {
-			electiveGroups = new EObjectContainmentEList<ElectiveGroup>(ElectiveGroup.class, this, Study_programPackage.SEMESTER__ELECTIVE_GROUPS);
-		}
-		return electiveGroups;
+		return courseGroups;
 	}
 
 	/**
@@ -200,9 +172,12 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case Study_programPackage.SEMESTER__COURSE_GROUPS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCourseGroups()).basicAdd(otherEnd, msgs);
 			case Study_programPackage.SEMESTER__YEAR:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -219,8 +194,8 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case Study_programPackage.SEMESTER__ELECTIVE_GROUPS:
-				return ((InternalEList<?>)getElectiveGroups()).basicRemove(otherEnd, msgs);
+			case Study_programPackage.SEMESTER__COURSE_GROUPS:
+				return ((InternalEList<?>)getCourseGroups()).basicRemove(otherEnd, msgs);
 			case Study_programPackage.SEMESTER__YEAR:
 				return basicSetYear(null, msgs);
 		}
@@ -249,10 +224,8 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Study_programPackage.SEMESTER__MANDATORY:
-				return getMandatory();
-			case Study_programPackage.SEMESTER__ELECTIVE_GROUPS:
-				return getElectiveGroups();
+			case Study_programPackage.SEMESTER__COURSE_GROUPS:
+				return getCourseGroups();
 			case Study_programPackage.SEMESTER__YEAR:
 				return getYear();
 			case Study_programPackage.SEMESTER__SEASON:
@@ -270,13 +243,9 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Study_programPackage.SEMESTER__MANDATORY:
-				getMandatory().clear();
-				getMandatory().addAll((Collection<? extends Course>)newValue);
-				return;
-			case Study_programPackage.SEMESTER__ELECTIVE_GROUPS:
-				getElectiveGroups().clear();
-				getElectiveGroups().addAll((Collection<? extends ElectiveGroup>)newValue);
+			case Study_programPackage.SEMESTER__COURSE_GROUPS:
+				getCourseGroups().clear();
+				getCourseGroups().addAll((Collection<? extends CourseGroup>)newValue);
 				return;
 			case Study_programPackage.SEMESTER__YEAR:
 				setYear((Year)newValue);
@@ -296,11 +265,8 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Study_programPackage.SEMESTER__MANDATORY:
-				getMandatory().clear();
-				return;
-			case Study_programPackage.SEMESTER__ELECTIVE_GROUPS:
-				getElectiveGroups().clear();
+			case Study_programPackage.SEMESTER__COURSE_GROUPS:
+				getCourseGroups().clear();
 				return;
 			case Study_programPackage.SEMESTER__YEAR:
 				setYear((Year)null);
@@ -320,10 +286,8 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Study_programPackage.SEMESTER__MANDATORY:
-				return mandatory != null && !mandatory.isEmpty();
-			case Study_programPackage.SEMESTER__ELECTIVE_GROUPS:
-				return electiveGroups != null && !electiveGroups.isEmpty();
+			case Study_programPackage.SEMESTER__COURSE_GROUPS:
+				return courseGroups != null && !courseGroups.isEmpty();
 			case Study_programPackage.SEMESTER__YEAR:
 				return getYear() != null;
 			case Study_programPackage.SEMESTER__SEASON:

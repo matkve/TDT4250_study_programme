@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import tdt4250.study_program.LevelKind;
 import tdt4250.study_program.Programme;
 import tdt4250.study_program.Semester;
 import tdt4250.study_program.Study_programPackage;
@@ -37,6 +38,7 @@ import tdt4250.study_program.Year;
  *   <li>{@link tdt4250.study_program.impl.YearImpl#getSpecialisation <em>Specialisation</em>}</li>
  *   <li>{@link tdt4250.study_program.impl.YearImpl#getYearNumber <em>Year Number</em>}</li>
  *   <li>{@link tdt4250.study_program.impl.YearImpl#getProgramme <em>Programme</em>}</li>
+ *   <li>{@link tdt4250.study_program.impl.YearImpl#getLevel <em>Level</em>}</li>
  * </ul>
  *
  * @generated
@@ -91,6 +93,26 @@ public class YearImpl extends MinimalEObjectImpl.Container implements Year {
 	 * @ordered
 	 */
 	protected static final int YEAR_NUMBER_EDEFAULT = 0;
+
+	/**
+	 * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLevel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final LevelKind LEVEL_EDEFAULT = LevelKind.BACHELOR;
+
+	/**
+	 * The cached value of the '{@link #getLevel() <em>Level</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLevel()
+	 * @generated
+	 * @ordered
+	 */
+	protected LevelKind level = LEVEL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -267,6 +289,29 @@ public class YearImpl extends MinimalEObjectImpl.Container implements Year {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public LevelKind getLevel() {
+		return level;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLevel(LevelKind newLevel) {
+		LevelKind oldLevel = level;
+		level = newLevel == null ? LEVEL_EDEFAULT : newLevel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Study_programPackage.YEAR__LEVEL, oldLevel, level));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -343,6 +388,8 @@ public class YearImpl extends MinimalEObjectImpl.Container implements Year {
 				return getYearNumber();
 			case Study_programPackage.YEAR__PROGRAMME:
 				return getProgramme();
+			case Study_programPackage.YEAR__LEVEL:
+				return getLevel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -373,6 +420,9 @@ public class YearImpl extends MinimalEObjectImpl.Container implements Year {
 			case Study_programPackage.YEAR__PROGRAMME:
 				setProgramme((Programme)newValue);
 				return;
+			case Study_programPackage.YEAR__LEVEL:
+				setLevel((LevelKind)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -400,6 +450,9 @@ public class YearImpl extends MinimalEObjectImpl.Container implements Year {
 			case Study_programPackage.YEAR__PROGRAMME:
 				setProgramme((Programme)null);
 				return;
+			case Study_programPackage.YEAR__LEVEL:
+				setLevel(LEVEL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -424,6 +477,8 @@ public class YearImpl extends MinimalEObjectImpl.Container implements Year {
 				return getYearNumber() != YEAR_NUMBER_EDEFAULT;
 			case Study_programPackage.YEAR__PROGRAMME:
 				return getProgramme() != null;
+			case Study_programPackage.YEAR__LEVEL:
+				return level != LEVEL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -440,6 +495,8 @@ public class YearImpl extends MinimalEObjectImpl.Container implements Year {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (specialisation: ");
 		result.append(specialisation);
+		result.append(", level: ");
+		result.append(level);
 		result.append(')');
 		return result.toString();
 	}

@@ -88,8 +88,8 @@ public class Study_programAdapterFactory extends AdapterFactoryImpl {
 				return createUniversityAdapter();
 			}
 			@Override
-			public Adapter caseElectiveGroup(ElectiveGroup object) {
-				return createElectiveGroupAdapter();
+			public Adapter caseCourseGroup(CourseGroup object) {
+				return createCourseGroupAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -182,16 +182,16 @@ public class Study_programAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link tdt4250.study_program.ElectiveGroup <em>Elective Group</em>}'.
+	 * Creates a new adapter for an object of class '{@link tdt4250.study_program.CourseGroup <em>Course Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see tdt4250.study_program.ElectiveGroup
+	 * @see tdt4250.study_program.CourseGroup
 	 * @generated
 	 */
-	public Adapter createElectiveGroupAdapter() {
+	public Adapter createCourseGroupAdapter() {
 		return null;
 	}
 

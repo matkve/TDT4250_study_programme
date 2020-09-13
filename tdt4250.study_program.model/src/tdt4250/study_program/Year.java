@@ -21,10 +21,12 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link tdt4250.study_program.Year#getSpecialisation <em>Specialisation</em>}</li>
  *   <li>{@link tdt4250.study_program.Year#getYearNumber <em>Year Number</em>}</li>
  *   <li>{@link tdt4250.study_program.Year#getProgramme <em>Programme</em>}</li>
+ *   <li>{@link tdt4250.study_program.Year#getLevel <em>Level</em>}</li>
  * </ul>
  *
  * @see tdt4250.study_program.Study_programPackage#getYear()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='requireFallAndSpringSemesters multipleNextYearsAreSpecialisations'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='requireFallAndSpringSemesters multipleNextYearsAreSpecialisations bachelorBeforeMaster'"
+ *        annotation="http://www.eclipse.org/acceleo/query/1.0 bachelorBeforeMaster='let bachelor = self.eClass().ePackage.getEClassifier(\'LevelKind\').getEEnumLiteral(\'Bachelor\') if self.level = bachelor and not self.previousYear-&gt;isEmpty() then self.previousYear.level = bachelor else true endif'"
  * @generated
  */
 public interface Year extends EObject {
@@ -138,5 +140,30 @@ public interface Year extends EObject {
 	 * @generated
 	 */
 	void setProgramme(Programme value);
+
+	/**
+	 * Returns the value of the '<em><b>Level</b></em>' attribute.
+	 * The literals are from the enumeration {@link tdt4250.study_program.LevelKind}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Level</em>' attribute.
+	 * @see tdt4250.study_program.LevelKind
+	 * @see #setLevel(LevelKind)
+	 * @see tdt4250.study_program.Study_programPackage#getYear_Level()
+	 * @model
+	 * @generated
+	 */
+	LevelKind getLevel();
+
+	/**
+	 * Sets the value of the '{@link tdt4250.study_program.Year#getLevel <em>Level</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Level</em>' attribute.
+	 * @see tdt4250.study_program.LevelKind
+	 * @see #getLevel()
+	 * @generated
+	 */
+	void setLevel(LevelKind value);
 
 } // Year

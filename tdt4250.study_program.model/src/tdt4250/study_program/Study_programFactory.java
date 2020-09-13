@@ -67,13 +67,13 @@ public interface Study_programFactory extends EFactory {
 	University createUniversity();
 
 	/**
-	 * Returns a new object of class '<em>Elective Group</em>'.
+	 * Returns a new object of class '<em>Course Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Elective Group</em>'.
+	 * @return a new object of class '<em>Course Group</em>'.
 	 * @generated
 	 */
-	ElectiveGroup createElectiveGroup();
+	CourseGroup createCourseGroup();
 
 	/**
 	 * Returns the package supported by this factory.

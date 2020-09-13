@@ -96,9 +96,9 @@ public class Study_programSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case Study_programPackage.ELECTIVE_GROUP: {
-				ElectiveGroup electiveGroup = (ElectiveGroup)theEObject;
-				T result = caseElectiveGroup(electiveGroup);
+			case Study_programPackage.COURSE_GROUP: {
+				CourseGroup courseGroup = (CourseGroup)theEObject;
+				T result = caseCourseGroup(courseGroup);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -182,17 +182,17 @@ public class Study_programSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Elective Group</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Course Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Elective Group</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Course Group</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseElectiveGroup(ElectiveGroup object) {
+	public T caseCourseGroup(CourseGroup object) {
 		return null;
 	}
 

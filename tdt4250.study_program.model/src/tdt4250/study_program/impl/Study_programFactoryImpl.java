@@ -62,7 +62,7 @@ public class Study_programFactoryImpl extends EFactoryImpl implements Study_prog
 			case Study_programPackage.SEMESTER: return createSemester();
 			case Study_programPackage.YEAR: return createYear();
 			case Study_programPackage.UNIVERSITY: return createUniversity();
-			case Study_programPackage.ELECTIVE_GROUP: return createElectiveGroup();
+			case Study_programPackage.COURSE_GROUP: return createCourseGroup();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -78,6 +78,8 @@ public class Study_programFactoryImpl extends EFactoryImpl implements Study_prog
 		switch (eDataType.getClassifierID()) {
 			case Study_programPackage.SEASON_KIND:
 				return createSeasonKindFromString(eDataType, initialValue);
+			case Study_programPackage.LEVEL_KIND:
+				return createLevelKindFromString(eDataType, initialValue);
 			case Study_programPackage.COURSE_CODE:
 				return createCourseCodeFromString(eDataType, initialValue);
 			default:
@@ -95,6 +97,8 @@ public class Study_programFactoryImpl extends EFactoryImpl implements Study_prog
 		switch (eDataType.getClassifierID()) {
 			case Study_programPackage.SEASON_KIND:
 				return convertSeasonKindToString(eDataType, instanceValue);
+			case Study_programPackage.LEVEL_KIND:
+				return convertLevelKindToString(eDataType, instanceValue);
 			case Study_programPackage.COURSE_CODE:
 				return convertCourseCodeToString(eDataType, instanceValue);
 			default:
@@ -163,9 +167,9 @@ public class Study_programFactoryImpl extends EFactoryImpl implements Study_prog
 	 * @generated
 	 */
 	@Override
-	public ElectiveGroup createElectiveGroup() {
-		ElectiveGroupImpl electiveGroup = new ElectiveGroupImpl();
-		return electiveGroup;
+	public CourseGroup createCourseGroup() {
+		CourseGroupImpl courseGroup = new CourseGroupImpl();
+		return courseGroup;
 	}
 
 	/**
@@ -185,6 +189,26 @@ public class Study_programFactoryImpl extends EFactoryImpl implements Study_prog
 	 * @generated
 	 */
 	public String convertSeasonKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LevelKind createLevelKindFromString(EDataType eDataType, String initialValue) {
+		LevelKind result = LevelKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertLevelKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

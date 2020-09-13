@@ -12,21 +12,22 @@
   <eClassifiers xsi:type="ecore:EClass" name="Course">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="#//CourseCode"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="credits" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"
-        defaultValueLiteral="7.5"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="credits" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="7.5d"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="season" eType="#//SeasonKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" eType="#//LevelKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Semester">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="courseSeasonsMatch totalCreditsMustBe30"/>
+      <details key="constraints" value="courseSeasonsMatch totalCreditsAtLeast30 masterYearSemesterNeedsAtLeastOneMasterCourse"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
-      <details key="courseSeasonsMatch" value="self.mandatory->union(self.electiveGroups.electives)->forAll(course | course.season = self.season)"/>
+      <details key="courseSeasonsMatch" value="self.courseGroups.mandatory->union(self.courseGroups.electives)->forAll(course | course.season = self.season or course.season = self.eClass().ePackage.getEClassifier('SeasonKind').getEEnumLiteral('Both'))"/>
+      <details key="totalCreditsAtLeast30" value="self.courseGroups.mandatory->union(self.courseGroups.electives).credits->sum() >= 30.0"/>
+      <details key="masterYearSemesterNeedsAtLeastOneMasterCourse" value="let masterLevel = self.eClass().ePackage.getEClassifier('LevelKind').getEEnumLiteral('Master') let masterCredits = self.courseGroups.mandatory->union(self.courseGroups.electives)->select(course | course.level = masterLevel).credits if self.year.level = masterLevel then if masterCredits->isEmpty() then false else masterCredits->sum() >= 7.5 endif else true endif"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mandatory" upperBound="-1"
-        eType="#//Course"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="electiveGroups" upperBound="-1"
-        eType="#//ElectiveGroup" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="courseGroups" lowerBound="1"
+        upperBound="-1" eType="#//CourseGroup" containment="true" eOpposite="#//CourseGroup/semester"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="year" lowerBound="1" eType="#//Year"
         eOpposite="#//Year/semesters"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="season" eType="#//SeasonKind"/>
@@ -38,7 +39,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Year">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="requireFallAndSpringSemesters multipleNextYearsAreSpecialisations"/>
+      <details key="constraints" value="requireFallAndSpringSemesters multipleNextYearsAreSpecialisations bachelorBeforeMaster"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
+      <details key="bachelorBeforeMaster" value="let bachelor = self.eClass().ePackage.getEClassifier('LevelKind').getEEnumLiteral('Bachelor') if self.level = bachelor and not self.previousYear->isEmpty() then self.previousYear.level = bachelor else true endif"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="semesters" lowerBound="2"
         upperBound="2" eType="#//Semester" containment="true" eOpposite="#//Semester/year"/>
@@ -53,6 +57,7 @@
         derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="programme" eType="#//Programme"
         eOpposite="#//Programme/firstYear"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" eType="#//LevelKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="University">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -67,16 +72,18 @@
         eType="#//Course" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ElectiveGroup">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="electivesInGroupNeedsToHaveSpecifiedCreditScore"/>
-    </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="CourseGroup">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creditsPerElectiveInGroup"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat" defaultValueLiteral="7.5"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minToChoose" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="electives" lowerBound="1"
-        upperBound="-1" eType="#//Course"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="electives" upperBound="-1"
+        eType="#//Course"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mandatory" upperBound="-1"
+        eType="#//Course"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="semester" lowerBound="1"
+        eType="#//Semester" eOpposite="#//Semester/courseGroups"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="CourseCode" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="LevelKind">
+    <eLiterals name="Bachelor"/>
+    <eLiterals name="Master"/>
+  </eClassifiers>
 </ecore:EPackage>

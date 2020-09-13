@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link tdt4250.study_program.Course#getName <em>Name</em>}</li>
  *   <li>{@link tdt4250.study_program.Course#getCredits <em>Credits</em>}</li>
  *   <li>{@link tdt4250.study_program.Course#getSeason <em>Season</em>}</li>
+ *   <li>{@link tdt4250.study_program.Course#getLevel <em>Level</em>}</li>
  * </ul>
  *
  * @see tdt4250.study_program.Study_programPackage#getCourse()
@@ -70,16 +71,16 @@ public interface Course extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Credits</b></em>' attribute.
-	 * The default value is <code>"7.5"</code>.
+	 * The default value is <code>"7.5d"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Credits</em>' attribute.
-	 * @see #setCredits(float)
+	 * @see #setCredits(double)
 	 * @see tdt4250.study_program.Study_programPackage#getCourse_Credits()
-	 * @model default="7.5"
+	 * @model default="7.5d"
 	 * @generated
 	 */
-	float getCredits();
+	double getCredits();
 
 	/**
 	 * Sets the value of the '{@link tdt4250.study_program.Course#getCredits <em>Credits</em>}' attribute.
@@ -89,7 +90,7 @@ public interface Course extends EObject {
 	 * @see #getCredits()
 	 * @generated
 	 */
-	void setCredits(float value);
+	void setCredits(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Season</b></em>' attribute.
@@ -115,5 +116,30 @@ public interface Course extends EObject {
 	 * @generated
 	 */
 	void setSeason(SeasonKind value);
+
+	/**
+	 * Returns the value of the '<em><b>Level</b></em>' attribute.
+	 * The literals are from the enumeration {@link tdt4250.study_program.LevelKind}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Level</em>' attribute.
+	 * @see tdt4250.study_program.LevelKind
+	 * @see #setLevel(LevelKind)
+	 * @see tdt4250.study_program.Study_programPackage#getCourse_Level()
+	 * @model
+	 * @generated
+	 */
+	LevelKind getLevel();
+
+	/**
+	 * Sets the value of the '{@link tdt4250.study_program.Course#getLevel <em>Level</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Level</em>' attribute.
+	 * @see tdt4250.study_program.LevelKind
+	 * @see #getLevel()
+	 * @generated
+	 */
+	void setLevel(LevelKind value);
 
 } // Course

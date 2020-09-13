@@ -7,58 +7,169 @@
     xsi:schemaLocation="http:///study_program.ecore study_program.ecore"
     name="NTNU">
   <programmes
-      name="Informatikk">
+      name="Datateknologi">
     <firstYear>
       <semesters
-          mandatory="//@courses.0 //@courses.4"
           season="Fall">
-        <electiveGroups
-            electives="//@courses.6"/>
+        <courseGroups
+            description="Master i datateknologi - 5-årig"
+            mandatory="//@courses.0 //@courses.1 //@courses.2 //@courses.3 //@courses.4"/>
       </semesters>
-      <semesters/>
-      <nextYear
-          specialisation="webutvikling">
+      <semesters>
+        <courseGroups
+            description="Master i datateknologi - 5-årig"
+            mandatory="//@courses.5 //@courses.6 //@courses.7 //@courses.8"/>
+      </semesters>
+      <nextYear>
         <semesters
-            mandatory="//@courses.0"
-            season="Fall"/>
-        <semesters/>
-      </nextYear>
-      <nextYear
-          specialisation="kunstig intelligens">
-        <semesters
-            mandatory="//@courses.0 //@courses.2"
             season="Fall">
-          <electiveGroups
-              electives="//@courses.6 //@courses.2"/>
+          <courseGroups
+              description="Master i datateknologi - 5-årig"
+              mandatory="//@courses.9 //@courses.10 //@courses.11 //@courses.12"/>
         </semesters>
-        <semesters
-            mandatory="//@courses.1"/>
-        <nextYear>
+        <semesters>
+          <courseGroups
+              description="Master i datateknologi - 5-årig"
+              mandatory="//@courses.13 //@courses.14 //@courses.15 //@courses.16"/>
+        </semesters>
+        <nextYear
+            specialisation="Kunstig Intelligens">
           <semesters
-              season="Fall"/>
-          <semesters/>
+              season="Fall">
+            <courseGroups
+                description="Obligatoriske og valgbare emner"
+                electives="//@courses.20"
+                mandatory="//@courses.17 //@courses.18 //@courses.19"/>
+          </semesters>
+          <semesters>
+            <courseGroups
+                description="Obligatoriske og valgbare emner"
+                mandatory="//@courses.24 //@courses.23 //@courses.22 //@courses.21"/>
+          </semesters>
+          <nextYear
+              level="Master">
+            <semesters
+                season="Fall">
+              <courseGroups
+                  description="Obligatoriske og valgbare emner"
+                  electives="//@courses.27"
+                  mandatory="//@courses.25 //@courses.26"/>
+            </semesters>
+            <semesters>
+              <courseGroups
+                  description="Obligatoriske og valgbare emner"
+                  electives="//@courses.31 //@courses.30 //@courses.29"
+                  mandatory="//@courses.28"/>
+              <courseGroups
+                  description="Ingeniøremne annet studieprogram"/>
+            </semesters>
+          </nextYear>
+        </nextYear>
+        <nextYear
+            specialisation="Programvaresystemer">
+          <semesters
+              season="Fall">
+            <courseGroups
+                electives="//@courses.11"
+                mandatory="//@courses.9 //@courses.10"/>
+            <courseGroups
+                electives="//@courses.12"/>
+          </semesters>
+          <semesters>
+            <courseGroups
+                mandatory="//@courses.13 //@courses.14 //@courses.15 //@courses.16"/>
+          </semesters>
         </nextYear>
       </nextYear>
     </firstYear>
   </programmes>
-  <courses code="tdt4110"
-      name="itgk"
+  <courses code="EXPH0004"
+      name="Examen philosophicum for naturvitenskap og teknologi"
+      season="Both"/>
+  <courses code="HMS0002"
+      name="HMS-kurs for 1. årsstudenter"
+      credits="0.0"
       season="Fall"/>
-  <courses code="tdt4100"
-      name="oop"/>
-  <courses code="tdt4120"
-      name="algdat"
+  <courses code="TDT4110"
+      name="Informasjonsteknologi, grunnkurs"
       season="Fall"/>
-  <courses code="tdt4140"
-      name="programvareutvikling"/>
-  <courses code="tdt4136"
-      name="intro kunstig int"
+  <courses code="TMA4100"
+      name="Matematikk 1"
       season="Fall"/>
-  <courses code="tdt4186"
-      name="os"/>
-  <courses code="it3402"
-      name="brukergrensesnitt"
+  <courses code="TMA4140"
+      name="Diskret matematikk"
       season="Fall"/>
-  <courses code="tdt4242"
-      name="avansert programvareutvikling"/>
+  <courses code="TDT4100"
+      name="Objektorientert programmering"/>
+  <courses code="TDT4112"
+      name="Programmeringslab for datateknologi"/>
+  <courses code="TFE4101"
+      name="Krets- og digitalteknikk"/>
+  <courses code="TMA4115"
+      name="Matematikk 3"/>
+  <courses code="TDT4113"
+      name="Datateknologi, programmeringsprosjekt"
+      season="Fall"/>
+  <courses code="TDT4120"
+      name="Algoritmer og datastrukturer"
+      season="Fall"/>
+  <courses code="TDT4160"
+      name="Datamaskiner og digitalteknikk"
+      season="Fall"/>
+  <courses code="TMA4240"
+      name="Statistikk"
+      season="Fall"/>
+  <courses code="TDT4140"
+      name="Programvareutvikling"/>
+  <courses code="TDT4145"
+      name="Datamodellering og databasesystemer"/>
+  <courses code="TDT4180"
+      name="Menneske-maskin interaksjon"/>
+  <courses code="TTM4100"
+      name="Kommunikasjon - Tjenester og nett"/>
+  <courses code="TDT4136"
+      name="Introduksjon til kunstig intelligens"
+      season="Fall"/>
+  <courses code="TDT4137"
+      name="Kognitive arkitekturer"
+      season="Fall"/>
+  <courses code="TMA4135"
+      name="Matematikk 4D"
+      season="Fall"/>
+  <courses code="IT2810"
+      name="Webutvikling"
+      season="Fall"/>
+  <courses code="TDT4171"
+      name="Metoder i kunstig intelligens"/>
+  <courses code="TDT4186"
+      name="Operativsystemer"/>
+  <courses code="TFY4125"
+      name="Fysikk"/>
+  <courses code="TIØ4258"
+      name="Teknologiledelse"/>
+  <courses code="TDT4173"
+      name="Maskinlæring og case-basert resonnering"
+      season="Fall"
+      level="Master"/>
+  <courses code="TDT4290"
+      name="Kundestyrt prosjekt"
+      credits="15.0"
+      season="Fall"
+      level="Master"/>
+  <courses code="AAR4250"
+      name="Arkitektur som teknologisk praksis"
+      season="Fall"
+      level="Master"/>
+  <courses code="IT3105"
+      name="Kunstig intelligens programmering"
+      level="Master"/>
+  <courses code="TDT4265"
+      name="Datasyn"
+      level="Master"/>
+  <courses code="IT3708"
+      name="Bio-inspirert kunstig intelligens"
+      level="Master"/>
+  <courses code="TDT4215"
+      name="Web-intelligens"
+      level="Master"/>
 </study_program:University>

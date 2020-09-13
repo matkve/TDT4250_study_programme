@@ -152,13 +152,22 @@ public interface Study_programPackage extends EPackage {
 	int COURSE__SEASON = 3;
 
 	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COURSE__LEVEL = 4;
+
+	/**
 	 * The number of structural features of the '<em>Course</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COURSE_FEATURE_COUNT = 4;
+	int COURSE_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Course</em>' class.
@@ -180,22 +189,13 @@ public interface Study_programPackage extends EPackage {
 	int SEMESTER = 2;
 
 	/**
-	 * The feature id for the '<em><b>Mandatory</b></em>' reference list.
+	 * The feature id for the '<em><b>Course Groups</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEMESTER__MANDATORY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Elective Groups</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEMESTER__ELECTIVE_GROUPS = 1;
+	int SEMESTER__COURSE_GROUPS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Year</b></em>' container reference.
@@ -204,7 +204,7 @@ public interface Study_programPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEMESTER__YEAR = 2;
+	int SEMESTER__YEAR = 1;
 
 	/**
 	 * The feature id for the '<em><b>Season</b></em>' attribute.
@@ -213,7 +213,7 @@ public interface Study_programPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEMESTER__SEASON = 3;
+	int SEMESTER__SEASON = 2;
 
 	/**
 	 * The number of structural features of the '<em>Semester</em>' class.
@@ -222,7 +222,7 @@ public interface Study_programPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SEMESTER_FEATURE_COUNT = 4;
+	int SEMESTER_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Semester</em>' class.
@@ -298,13 +298,22 @@ public interface Study_programPackage extends EPackage {
 	int YEAR__PROGRAMME = 5;
 
 	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int YEAR__LEVEL = 6;
+
+	/**
 	 * The number of structural features of the '<em>Year</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int YEAR_FEATURE_COUNT = 6;
+	int YEAR_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Year</em>' class.
@@ -371,14 +380,14 @@ public interface Study_programPackage extends EPackage {
 	int UNIVERSITY_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link tdt4250.study_program.impl.ElectiveGroupImpl <em>Elective Group</em>}' class.
+	 * The meta object id for the '{@link tdt4250.study_program.impl.CourseGroupImpl <em>Course Group</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see tdt4250.study_program.impl.ElectiveGroupImpl
-	 * @see tdt4250.study_program.impl.Study_programPackageImpl#getElectiveGroup()
+	 * @see tdt4250.study_program.impl.CourseGroupImpl
+	 * @see tdt4250.study_program.impl.Study_programPackageImpl#getCourseGroup()
 	 * @generated
 	 */
-	int ELECTIVE_GROUP = 5;
+	int COURSE_GROUP = 5;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -387,25 +396,7 @@ public interface Study_programPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ELECTIVE_GROUP__DESCRIPTION = 0;
-
-	/**
-	 * The feature id for the '<em><b>Credits Per Elective In Group</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELECTIVE_GROUP__CREDITS_PER_ELECTIVE_IN_GROUP = 1;
-
-	/**
-	 * The feature id for the '<em><b>Min To Choose</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELECTIVE_GROUP__MIN_TO_CHOOSE = 2;
+	int COURSE_GROUP__DESCRIPTION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Electives</b></em>' reference list.
@@ -414,25 +405,43 @@ public interface Study_programPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ELECTIVE_GROUP__ELECTIVES = 3;
+	int COURSE_GROUP__ELECTIVES = 1;
 
 	/**
-	 * The number of structural features of the '<em>Elective Group</em>' class.
+	 * The feature id for the '<em><b>Mandatory</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELECTIVE_GROUP_FEATURE_COUNT = 4;
+	int COURSE_GROUP__MANDATORY = 2;
 
 	/**
-	 * The number of operations of the '<em>Elective Group</em>' class.
+	 * The feature id for the '<em><b>Semester</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELECTIVE_GROUP_OPERATION_COUNT = 0;
+	int COURSE_GROUP__SEMESTER = 3;
+
+	/**
+	 * The number of structural features of the '<em>Course Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COURSE_GROUP_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Course Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COURSE_GROUP_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link tdt4250.study_program.SeasonKind <em>Season Kind</em>}' enum.
@@ -446,6 +455,16 @@ public interface Study_programPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link tdt4250.study_program.LevelKind <em>Level Kind</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see tdt4250.study_program.LevelKind
+	 * @see tdt4250.study_program.impl.Study_programPackageImpl#getLevelKind()
+	 * @generated
+	 */
+	int LEVEL_KIND = 7;
+
+	/**
 	 * The meta object id for the '<em>Course Code</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -453,7 +472,7 @@ public interface Study_programPackage extends EPackage {
 	 * @see tdt4250.study_program.impl.Study_programPackageImpl#getCourseCode()
 	 * @generated
 	 */
-	int COURSE_CODE = 7;
+	int COURSE_CODE = 8;
 
 
 	/**
@@ -543,6 +562,17 @@ public interface Study_programPackage extends EPackage {
 	EAttribute getCourse_Season();
 
 	/**
+	 * Returns the meta object for the attribute '{@link tdt4250.study_program.Course#getLevel <em>Level</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Level</em>'.
+	 * @see tdt4250.study_program.Course#getLevel()
+	 * @see #getCourse()
+	 * @generated
+	 */
+	EAttribute getCourse_Level();
+
+	/**
 	 * Returns the meta object for class '{@link tdt4250.study_program.Semester <em>Semester</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -553,26 +583,15 @@ public interface Study_programPackage extends EPackage {
 	EClass getSemester();
 
 	/**
-	 * Returns the meta object for the reference list '{@link tdt4250.study_program.Semester#getMandatory <em>Mandatory</em>}'.
+	 * Returns the meta object for the containment reference list '{@link tdt4250.study_program.Semester#getCourseGroups <em>Course Groups</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Mandatory</em>'.
-	 * @see tdt4250.study_program.Semester#getMandatory()
+	 * @return the meta object for the containment reference list '<em>Course Groups</em>'.
+	 * @see tdt4250.study_program.Semester#getCourseGroups()
 	 * @see #getSemester()
 	 * @generated
 	 */
-	EReference getSemester_Mandatory();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link tdt4250.study_program.Semester#getElectiveGroups <em>Elective Groups</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Elective Groups</em>'.
-	 * @see tdt4250.study_program.Semester#getElectiveGroups()
-	 * @see #getSemester()
-	 * @generated
-	 */
-	EReference getSemester_ElectiveGroups();
+	EReference getSemester_CourseGroups();
 
 	/**
 	 * Returns the meta object for the container reference '{@link tdt4250.study_program.Semester#getYear <em>Year</em>}'.
@@ -673,6 +692,17 @@ public interface Study_programPackage extends EPackage {
 	EReference getYear_Programme();
 
 	/**
+	 * Returns the meta object for the attribute '{@link tdt4250.study_program.Year#getLevel <em>Level</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Level</em>'.
+	 * @see tdt4250.study_program.Year#getLevel()
+	 * @see #getYear()
+	 * @generated
+	 */
+	EAttribute getYear_Level();
+
+	/**
 	 * Returns the meta object for class '{@link tdt4250.study_program.University <em>University</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -716,58 +746,58 @@ public interface Study_programPackage extends EPackage {
 	EAttribute getUniversity_Name();
 
 	/**
-	 * Returns the meta object for class '{@link tdt4250.study_program.ElectiveGroup <em>Elective Group</em>}'.
+	 * Returns the meta object for class '{@link tdt4250.study_program.CourseGroup <em>Course Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Elective Group</em>'.
-	 * @see tdt4250.study_program.ElectiveGroup
+	 * @return the meta object for class '<em>Course Group</em>'.
+	 * @see tdt4250.study_program.CourseGroup
 	 * @generated
 	 */
-	EClass getElectiveGroup();
+	EClass getCourseGroup();
 
 	/**
-	 * Returns the meta object for the attribute '{@link tdt4250.study_program.ElectiveGroup#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the attribute '{@link tdt4250.study_program.CourseGroup#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see tdt4250.study_program.ElectiveGroup#getDescription()
-	 * @see #getElectiveGroup()
+	 * @see tdt4250.study_program.CourseGroup#getDescription()
+	 * @see #getCourseGroup()
 	 * @generated
 	 */
-	EAttribute getElectiveGroup_Description();
+	EAttribute getCourseGroup_Description();
 
 	/**
-	 * Returns the meta object for the attribute '{@link tdt4250.study_program.ElectiveGroup#getCreditsPerElectiveInGroup <em>Credits Per Elective In Group</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Credits Per Elective In Group</em>'.
-	 * @see tdt4250.study_program.ElectiveGroup#getCreditsPerElectiveInGroup()
-	 * @see #getElectiveGroup()
-	 * @generated
-	 */
-	EAttribute getElectiveGroup_CreditsPerElectiveInGroup();
-
-	/**
-	 * Returns the meta object for the attribute '{@link tdt4250.study_program.ElectiveGroup#getMinToChoose <em>Min To Choose</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Min To Choose</em>'.
-	 * @see tdt4250.study_program.ElectiveGroup#getMinToChoose()
-	 * @see #getElectiveGroup()
-	 * @generated
-	 */
-	EAttribute getElectiveGroup_MinToChoose();
-
-	/**
-	 * Returns the meta object for the reference list '{@link tdt4250.study_program.ElectiveGroup#getElectives <em>Electives</em>}'.
+	 * Returns the meta object for the reference list '{@link tdt4250.study_program.CourseGroup#getElectives <em>Electives</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Electives</em>'.
-	 * @see tdt4250.study_program.ElectiveGroup#getElectives()
-	 * @see #getElectiveGroup()
+	 * @see tdt4250.study_program.CourseGroup#getElectives()
+	 * @see #getCourseGroup()
 	 * @generated
 	 */
-	EReference getElectiveGroup_Electives();
+	EReference getCourseGroup_Electives();
+
+	/**
+	 * Returns the meta object for the reference list '{@link tdt4250.study_program.CourseGroup#getMandatory <em>Mandatory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Mandatory</em>'.
+	 * @see tdt4250.study_program.CourseGroup#getMandatory()
+	 * @see #getCourseGroup()
+	 * @generated
+	 */
+	EReference getCourseGroup_Mandatory();
+
+	/**
+	 * Returns the meta object for the container reference '{@link tdt4250.study_program.CourseGroup#getSemester <em>Semester</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Semester</em>'.
+	 * @see tdt4250.study_program.CourseGroup#getSemester()
+	 * @see #getCourseGroup()
+	 * @generated
+	 */
+	EReference getCourseGroup_Semester();
 
 	/**
 	 * Returns the meta object for enum '{@link tdt4250.study_program.SeasonKind <em>Season Kind</em>}'.
@@ -778,6 +808,16 @@ public interface Study_programPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getSeasonKind();
+
+	/**
+	 * Returns the meta object for enum '{@link tdt4250.study_program.LevelKind <em>Level Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Level Kind</em>'.
+	 * @see tdt4250.study_program.LevelKind
+	 * @generated
+	 */
+	EEnum getLevelKind();
 
 	/**
 	 * Returns the meta object for data type '{@link java.lang.String <em>Course Code</em>}'.
@@ -882,6 +922,14 @@ public interface Study_programPackage extends EPackage {
 		EAttribute COURSE__SEASON = eINSTANCE.getCourse_Season();
 
 		/**
+		 * The meta object literal for the '<em><b>Level</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COURSE__LEVEL = eINSTANCE.getCourse_Level();
+
+		/**
 		 * The meta object literal for the '{@link tdt4250.study_program.impl.SemesterImpl <em>Semester</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -892,20 +940,12 @@ public interface Study_programPackage extends EPackage {
 		EClass SEMESTER = eINSTANCE.getSemester();
 
 		/**
-		 * The meta object literal for the '<em><b>Mandatory</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Course Groups</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SEMESTER__MANDATORY = eINSTANCE.getSemester_Mandatory();
-
-		/**
-		 * The meta object literal for the '<em><b>Elective Groups</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SEMESTER__ELECTIVE_GROUPS = eINSTANCE.getSemester_ElectiveGroups();
+		EReference SEMESTER__COURSE_GROUPS = eINSTANCE.getSemester_CourseGroups();
 
 		/**
 		 * The meta object literal for the '<em><b>Year</b></em>' container reference feature.
@@ -982,6 +1022,14 @@ public interface Study_programPackage extends EPackage {
 		EReference YEAR__PROGRAMME = eINSTANCE.getYear_Programme();
 
 		/**
+		 * The meta object literal for the '<em><b>Level</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute YEAR__LEVEL = eINSTANCE.getYear_Level();
+
+		/**
 		 * The meta object literal for the '{@link tdt4250.study_program.impl.UniversityImpl <em>University</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1016,14 +1064,14 @@ public interface Study_programPackage extends EPackage {
 		EAttribute UNIVERSITY__NAME = eINSTANCE.getUniversity_Name();
 
 		/**
-		 * The meta object literal for the '{@link tdt4250.study_program.impl.ElectiveGroupImpl <em>Elective Group</em>}' class.
+		 * The meta object literal for the '{@link tdt4250.study_program.impl.CourseGroupImpl <em>Course Group</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see tdt4250.study_program.impl.ElectiveGroupImpl
-		 * @see tdt4250.study_program.impl.Study_programPackageImpl#getElectiveGroup()
+		 * @see tdt4250.study_program.impl.CourseGroupImpl
+		 * @see tdt4250.study_program.impl.Study_programPackageImpl#getCourseGroup()
 		 * @generated
 		 */
-		EClass ELECTIVE_GROUP = eINSTANCE.getElectiveGroup();
+		EClass COURSE_GROUP = eINSTANCE.getCourseGroup();
 
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -1031,23 +1079,7 @@ public interface Study_programPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ELECTIVE_GROUP__DESCRIPTION = eINSTANCE.getElectiveGroup_Description();
-
-		/**
-		 * The meta object literal for the '<em><b>Credits Per Elective In Group</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ELECTIVE_GROUP__CREDITS_PER_ELECTIVE_IN_GROUP = eINSTANCE.getElectiveGroup_CreditsPerElectiveInGroup();
-
-		/**
-		 * The meta object literal for the '<em><b>Min To Choose</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ELECTIVE_GROUP__MIN_TO_CHOOSE = eINSTANCE.getElectiveGroup_MinToChoose();
+		EAttribute COURSE_GROUP__DESCRIPTION = eINSTANCE.getCourseGroup_Description();
 
 		/**
 		 * The meta object literal for the '<em><b>Electives</b></em>' reference list feature.
@@ -1055,7 +1087,23 @@ public interface Study_programPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ELECTIVE_GROUP__ELECTIVES = eINSTANCE.getElectiveGroup_Electives();
+		EReference COURSE_GROUP__ELECTIVES = eINSTANCE.getCourseGroup_Electives();
+
+		/**
+		 * The meta object literal for the '<em><b>Mandatory</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COURSE_GROUP__MANDATORY = eINSTANCE.getCourseGroup_Mandatory();
+
+		/**
+		 * The meta object literal for the '<em><b>Semester</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COURSE_GROUP__SEMESTER = eINSTANCE.getCourseGroup_Semester();
 
 		/**
 		 * The meta object literal for the '{@link tdt4250.study_program.SeasonKind <em>Season Kind</em>}' enum.
@@ -1066,6 +1114,16 @@ public interface Study_programPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum SEASON_KIND = eINSTANCE.getSeasonKind();
+
+		/**
+		 * The meta object literal for the '{@link tdt4250.study_program.LevelKind <em>Level Kind</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see tdt4250.study_program.LevelKind
+		 * @see tdt4250.study_program.impl.Study_programPackageImpl#getLevelKind()
+		 * @generated
+		 */
+		EEnum LEVEL_KIND = eINSTANCE.getLevelKind();
 
 		/**
 		 * The meta object literal for the '<em>Course Code</em>' data type.
