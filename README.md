@@ -12,4 +12,4 @@ Ecore feature requirments:
 Note:
 There is a bug in the UML diagram of my model which makes the (opposite and containment) reference line from Year to Year not be displayed. These references are called "previousYear" and "nextYear" in the "Year" class.
 
-Assignment 2 instructions: If you want to use another model instance (.xmi) you need to edit the acceleo run configurations: Change the "Model" path to that of your sample input models. They obviously needs to be created instances of my "study_program.ecore" model. The ".edit/.editor/.tests" are automatically generated projects (not sure if I should include them in the repository).
+Assignment 2 instructions: If you want to use another model instance (.xmi) you need to edit the acceleo run configurations of the "Programme2TextGenerator.mtl" file located in "no.mat.programme.html.acceleo/src/no.mat.programme.html.acceleo.main": Change the "Model" path to that of your sample input models. They obviously needs to be created instances of my "study_program.ecore" model. The ".edit/.editor/.tests" are automatically generated projects (not sure if I should include them in the repository).
