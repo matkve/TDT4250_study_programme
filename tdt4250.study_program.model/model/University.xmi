@@ -61,8 +61,26 @@
                   electives="//@courses.31 //@courses.30 //@courses.29"
                   mandatory="//@courses.28"/>
               <courseGroups
-                  description="Ingeniøremne annet studieprogram"/>
+                  description="Ingeniøremne annet studieprogram"
+                  electives="//@courses.32 //@courses.33"/>
             </semesters>
+            <nextYear
+                level="Master">
+              <semesters
+                  season="Fall">
+                <courseGroups
+                    description="Fordypningsemner og masteroppgave"
+                    mandatory="//@courses.34 //@courses.35"/>
+                <courseGroups
+                    description="Komplementære emner"
+                    electives="//@courses.37 //@courses.36"/>
+              </semesters>
+              <semesters>
+                <courseGroups
+                    description="Fordypningsemner og masteroppgave"
+                    mandatory="//@courses.38"/>
+              </semesters>
+            </nextYear>
           </nextYear>
         </nextYear>
         <nextYear
@@ -70,15 +88,93 @@
           <semesters
               season="Fall">
             <courseGroups
-                electives="//@courses.11"
-                mandatory="//@courses.9 //@courses.10"/>
-            <courseGroups
-                electives="//@courses.12"/>
+                description="Obligatoriske og valgbare emner"
+                electives="//@courses.20"
+                mandatory="//@courses.17 //@courses.18 //@courses.19"/>
           </semesters>
           <semesters>
             <courseGroups
-                mandatory="//@courses.13 //@courses.14 //@courses.15 //@courses.16"/>
+                description="Obligatoriske og valgbare emner"
+                mandatory="//@courses.24 //@courses.23 //@courses.22 //@courses.39"/>
           </semesters>
+          <nextYear
+              specialisation="Programvareutvikling"
+              level="Master">
+            <semesters
+                season="Fall">
+              <courseGroups
+                  description="Obligatoriske og valgbare emner"
+                  mandatory="//@courses.43 //@courses.26"/>
+              <courseGroups
+                  description="Komplementære emner"
+                  electives="//@courses.37 //@courses.36"/>
+            </semesters>
+            <semesters>
+              <courseGroups
+                  description="Obligatoriske og valgbare emner"
+                  electives="//@courses.31 //@courses.42"
+                  mandatory="//@courses.41"/>
+              <courseGroups
+                  description="Ingeniøremne annet studieprogram"
+                  electives="//@courses.32 //@courses.33"/>
+            </semesters>
+            <nextYear
+                level="Master">
+              <semesters
+                  season="Fall">
+                <courseGroups
+                    description="Fordypningsemner og masteroppgave"
+                    mandatory="//@courses.34 //@courses.35"/>
+                <courseGroups
+                    description="Komplementære emner"
+                    electives="//@courses.37 //@courses.36"/>
+              </semesters>
+              <semesters>
+                <courseGroups
+                    description="Fordypningsemner og masteroppgave"
+                    mandatory="//@courses.38"/>
+              </semesters>
+            </nextYear>
+          </nextYear>
+          <nextYear
+              specialisation="Interaksjonsdesign og spillteknologi"
+              level="Master">
+            <semesters
+                season="Fall">
+              <courseGroups
+                  description="Obligatoriske og valgbare emner"
+                  mandatory="//@courses.26 //@courses.44"/>
+              <courseGroups
+                  description="Komplementære emner"
+                  electives="//@courses.37 //@courses.36"/>
+            </semesters>
+            <semesters>
+              <courseGroups
+                  description="Obligatoriske og valgbare emner"
+                  electives="//@courses.31 //@courses.42"
+                  mandatory="//@courses.45"/>
+              <courseGroups
+                  description="Ingeniøremne annet studieprogram"
+                  electives="//@courses.32 //@courses.33"/>
+            </semesters>
+            <nextYear
+                level="Master">
+              <semesters
+                  season="Fall">
+                <courseGroups
+                    description="Fordypningsemner og masteroppgave"
+                    mandatory="//@courses.34 //@courses.35"/>
+                <courseGroups
+                    description="Komplementære emner"
+                    electives="//@courses.37 //@courses.36"/>
+              </semesters>
+              <semesters>
+                <courseGroups
+                    description="Fordypningsemner og masteroppgave"
+                    mandatory="//@courses.38"/>
+              </semesters>
+            </nextYear>
+          </nextYear>
         </nextYear>
       </nextYear>
     </firstYear>
@@ -145,7 +241,7 @@
       name="Operativsystemer"/>
   <courses code="TFY4125"
       name="Fysikk"/>
-  <courses code="TIØ4258"
+  <courses code="TIO4258"
       name="Teknologiledelse"/>
   <courses code="TDT4173"
       name="Maskinlæring og case-basert resonnering"
@@ -171,5 +267,53 @@
       level="Master"/>
   <courses code="TDT4215"
       name="Web-intelligens"
+      level="Master"/>
+  <courses code="MEDT4165"
+      name="Signalbehandling i ultralyd-avbildning"/>
+  <courses code="MOL4010"
+      name="Grunnleggende molekylærbiologi"/>
+  <courses code="TDT4501"
+      name="Datateknologi, fordypningsprosjekt"
+      credits="15.0"
+      season="Fall"
+      level="Master"/>
+  <courses code="TDT4506"
+      name="Datateknologi, fordypningsemne"
+      season="Fall"
+      level="Master"/>
+  <courses code="AAR4250"
+      name="Arkitektur som teknologisk praksis"
+      season="Fall"
+      level="Master"/>
+  <courses code="BSOL4610"
+      name="Strategi og endring i teknologibedrifter"
+      season="Fall"
+      level="Master"/>
+  <courses code="TDT4900"
+      name="Datateknologi, masteroppgave"
+      credits="30.0"
+      level="Master"/>
+  <courses code="TDT4240"
+      name="Programvarearkitektur"/>
+  <courses code="BSOL4610"
+      name="Strategi og endring i teknologibedrifter"
+      season="Fall"
+      level="Master"/>
+  <courses code="TDT4242"
+      name="Avansert programvareutvikling"
+      level="Master"/>
+  <courses code="TDT4237"
+      name="Programvaresikkerhet"
+      level="Master"/>
+  <courses code="TDT4250"
+      name="Avansert programvaredesign"
+      season="Fall"
+      level="Master"/>
+  <courses code="IT3402"
+      name="Design av grafiske brukergrensesnitt"
+      season="Fall"
+      level="Master"/>
+  <courses code="TDT4245"
+      name="Samhandlingsteknologi og sosiale medier"
       level="Master"/>
 </study_program:University>

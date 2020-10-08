@@ -12,5 +12,6 @@ Export-Package: tdt4250.study_program,
  tdt4250.study_program.impl,
  tdt4250.study_program.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport
 Bundle-ActivationPolicy: lazy

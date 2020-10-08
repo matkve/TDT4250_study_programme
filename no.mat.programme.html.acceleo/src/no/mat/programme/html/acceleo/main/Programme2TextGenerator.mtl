@@ -1,0 +1,131 @@
+[comment encoding = UTF-8 /]
+[module Programme2TextGenerator('http:///study_program.ecore', 'http://www.eclipse.org/emf/2002/Ecore')]
+
+[template public programme2TextGenerator(university : University)]
+[comment @main/]
+[file (university.name.concat('.html'), false, 'UTF-8')]
+<html>
+<head>
+	<title>[university.name/]</title>
+	<meta charset="utf-8"/>
+	<style type="text/css">
+		.tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
+		.tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+		  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+		.tg th{background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+		  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+		.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+		.tg .tg-buh4{background-color:#f9f9f9;text-align:left;vertical-align:top}
+		.tg .tg-0lax{text-align:left;vertical-align:top}
+		.sel {width: 100%;height: auto;line-height: 1.3;display: block;box-sizing: border-box;font-size: 1.2em;color: #36528c;border: 1px solid #a2daff;margin: 0 0 1em 0;padding: .5em .3em;box-shadow: inset 0 0 1px rgba(0,0,0,0.4);background-color: #fff;border-radius: 0;}
+		.opt {font-weight: normal;display: block;white-space: pre;min-height: 1.2em;padding: 0px 2px 1px;}
+		.topSpace {margin-top: 50px;}
+		.mid {width: 60%;margin: auto;padding: 10px 10px 200px;}
+		.wide {width: 100%;}
+		.line {border-bottom-style: solid;border-bottom-color: #ccc;border-bottom-width: 2px;}
+		.float {position: relative;float: left;}
+		.clearfix {clear:both}
+		.large {font-size: 4em;}
+		h2 {color: #888;}
+		body {font-family: sans-serif;}
+	</style>
+</head>
+<body>
+	<div class="mid">
+	[for (programme : Programme | university.programmes)]
+		<h1 class="large">[programme.name/]</h1>
+		[for (first : Year | programme.firstYear)]
+			[displayYear(first)/]
+		[/for]
+	[/for]
+	</div>
+<script type="text/javascript">
+	function selectSpecialization(event) {
+	    var selectElement = event.target;
+	    var value = selectElement.value;
+		if(value != "-1") {
+			var specializationsContainer = selectElement.nextElementSibling;
+			var specializations = specializationsContainer.children;
+			for(var i = 0; i < specializations.length; i++) {
+				var specialization = specializations['['/]i];
+				if(specialization.id == value) {
+					specialization.removeAttribute("hidden");
+				}
+				else if(!specialization.hasAttribute("hidden")) {
+					specialization.setAttribute("hidden", null);
+				}
+			}
+		}
+	}
+</script>
+</body>
+</html>
+[/file]
+[/template]
+
+[template public displayYear(year : Year)]
+	<h1 class="topSpace wide line">[year.yearNumber/]. Year</h1>
+	[for (semester : Semester | year.semesters)]
+		[displaySemester(semester)/]
+	[/for]
+	[if year.nextYear->size() > 1]
+		<select class="sel topSpace wide" onchange="selectSpecialization(event)">
+			<option value="-1">Valg av studieretning</option>
+			[for (specialization : Year | year.nextYear)]
+				<option class="opt" value="[specialization.specialisation/]">[specialization.specialisation/]</option>
+			[/for]
+		</select>
+		<div>
+			[for (specialization : Year | year.nextYear)]
+				<div id="[specialization.specialisation/]" hidden>
+					[displayYear(specialization)/]
+				</div>
+			[/for]
+		</div>
+	[else]
+		[for (next : Year | year.nextYear)]
+			[displayYear(next)/]
+		[/for]
+	[/if]
+[/template]
+
+[template public displaySemester(semester : Semester)]
+	<div class="topSpace">
+		<h2>[semester.season/]</h2>
+		[for (group : CourseGroup | semester.courseGroups)]
+			<h3>[group.description/]</h3>
+			<table class="tg wide">
+				<thead>
+					<tr>
+						<th class="tg-1wig">Kode</th>
+						<th class="tg-1wig">Navn</th>
+						<th class="tg-1wig">Studiepoeng</th>
+						<th class="tg-1wig">Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					[for (mandatory : Course | group.mandatory)]
+						<tr>
+							<td class="tg-buh4"><a href="https://www.ntnu.no/studier/emner/[mandatory.code/]">[mandatory.code/]</a></td>
+							<td class="tg-buh4">[mandatory.name/]</td>
+							<td class="tg-buh4">[mandatory.credits/]</td>
+							<td class="tg-buh4">O</td>
+						</tr>
+					[/for]
+					[for (elective : Course | group.electives)]
+						<tr>
+							<td class="tg-buh4"><a href="https://www.ntnu.no/studier/emner/[elective.code/]">[elective.code/]</a></td>
+							<td class="tg-buh4">[elective.name/]</td>
+							<td class="tg-buh4">[elective.credits/]</td>
+							<td class="tg-buh4">VA</td>
+						</tr>
+					[/for]
+				</tbody>
+			</table>
+		[/for]
+	</div>
+[/template]
+
+
+
+

@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: tdt4250.study_program.model.edit;singleton:=true
+Automatic-Module-Name: tdt4250.study_program.model.edit
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: tdt4250.study_program.provider.Study_programEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-9
+Export-Package: tdt4250.study_program.provider
+Require-Bundle: org.eclipse.core.runtime,
+ tdt4250.study_program.model;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport
+Bundle-ActivationPolicy: lazy

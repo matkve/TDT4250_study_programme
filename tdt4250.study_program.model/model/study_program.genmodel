@@ -5,7 +5,7 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="9.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>study_program.ecore</foreignModel>
-  <genPackages prefix="Study_program" basePackage="tdt4250" disposableProviderFactory="true"
+  <genPackages prefix="Study_program" basePackage="tdt4250" resource="XMI" disposableProviderFactory="true"
       ecorePackage="study_program.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="study_program.ecore#//SeasonKind">
       <genEnumLiterals ecoreEnumLiteral="study_program.ecore#//SeasonKind/Spring"/>
